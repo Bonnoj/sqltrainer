@@ -24,7 +24,8 @@
 					<p>No opdrachten, yet.</p>
 				{% else %}
 				
-				{% for opdracht in opdrachten %}
+				<!--slice funciton is used to limit the array from 0 to max 10-->
+				{% for opdracht in opdrachten|slice(0, 10) %}
 					<div class="opdracht">
 						<a href="{{ urlFor('opdrachten.show', {'opdrachtId': opdracht.id}) }}">{{ opdracht.id }}: {{ opdracht.beschrijving }}</a>
 					</div>

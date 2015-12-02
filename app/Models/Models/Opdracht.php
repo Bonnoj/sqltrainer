@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Opdracht extends Eloquent
 {
-	public function getOpdracht()
-	{
-		return $this->beschrijving;
-	}
+    protected $fillable = array('beschrijving', 'antwoord');
+    protected $table = 'opdrachten';
+
 }

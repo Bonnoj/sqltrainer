@@ -170,7 +170,7 @@ class Carbon extends DateTime
     {
         if ($object === null) {
             // Don't return null... avoid Bug #52063 in PHP <5.3.6
-            return new DateTimeZone(date_default_timezone_get());
+            return new DateTimeZone("Europe/Amsterdam");
         }
 
         if ($object instanceof DateTimeZone) {

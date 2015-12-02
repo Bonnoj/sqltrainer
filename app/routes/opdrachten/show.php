@@ -1,5 +1,32 @@
 <?php
+use Models\Models\Opdracht;
 
+// Get method - Show login page
+$app->get('/opdrachten/new', function() use ($app) 
+{
+	$app->render('opdrachten/new.php');
+	
+})->name('opdrachten.new');
+
+// Get method - Show login page
+$app->post('/opdrachten/new', function() use ($app) 
+{
+    
+    $beschrijving = $app->request->post()['beschrijving'];
+    $antwoord = $app->request->post()['antwoord'];
+    
+    $opdracht                   = new Opdracht;
+    $opdracht->beschrijving     = $beschrijving;
+    $opdracht->antwoord         = $antwoord;
+
+    // save the bear to the database
+    $opdracht->save();
+    
+   $app->response->redirect($app->urlFor('home'), 303);
+   //$app->response->redirect('opdrachten/' + $opdracht['id']);
+
+	
+})->name('opdrachten.newpost');
 
 $app->get('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
 
