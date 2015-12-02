@@ -4,7 +4,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 	<div class="container"><br />
-		Welkom bij de SQL Trainer!
+		Welkom {{ first_name }} {{ last_name }} bij de SQL Trainer!
 	</div>
 </div>
     
@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h2>Opdrachten</h2>
-			  
+				
 				{% if opdrachten is empty %}
 					<p>No opdrachten, yet.</p>
 				{% else %}

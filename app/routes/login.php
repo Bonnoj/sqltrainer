@@ -10,11 +10,25 @@ $app->get('/login', function() use ($app)
 // Post method - Submit login
 $app->post('/login', function() use ($app) 
 {
-	$_SESSION['id5'] = "test";  // Initializing Session with value of PHP Variable
-	
 	// Retrieve 
 	$email = $app->request->post()['email'];
 	$password = $app->request->post()['password'];
+	
+	$user = $app->db->table('users')->where('users.user_mail', '=', $email)->first();	// TODO add password check
+
+	if (!$user)
+	{
+		// Not logged in
+		$app->notFound();
+	}
+	else 
+	{
+		// Logged in - set user settings in session storage
+		$_SESSION['user_mail'] = $user['user_mail'];  // Initializing Session with value of PHP Variable
+		$_SESSION['user_id'] = $user['id'];
+		$_SESSION['first_name'] = $user['first_name'];
+		$_SESSION['last_name'] = $user['last_name'];
+	}
 	
 	$app->redirect($app->urlFor('home'));
 	
