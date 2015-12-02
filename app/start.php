@@ -1,5 +1,9 @@
 <?php
 
+
+session_cache_limiter(false);
+session_start();
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 require '../vendor/autoload.php';
@@ -24,9 +28,16 @@ $view->setTemplatesDirectory('../app/views');
 $view->parserExtensions = [
 	new \Slim\Views\TwigExtension()
 ];
-
 require 'routes.php';
 
+$app->error(function (\Exception $e) use ($app) {
+		//$app->notFound(function () use ($app) {
+		//$app->redirect('/SqlTrainer/public');
+	//});
+});
+
 $app->run();
+
+
 
 ?>
