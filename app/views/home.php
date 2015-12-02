@@ -4,7 +4,13 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 	<div class="container"><br />
-		Welkom {{ first_name }} {{ last_name }} bij de SQL Trainer!
+		<p>Welkom {{ first_name }} {{ last_name }} bij de SQL Trainer!</p>
+		
+		{% if rechten == 1 %}
+			<p>You are a student.</p>
+		{% else %}
+			<p>You are a teacher.</p>
+		{% endif %}
 	</div>
 </div>
     

@@ -28,6 +28,7 @@ $app->post('/login', function() use ($app)
 		$_SESSION['user_id'] = $user['id'];
 		$_SESSION['first_name'] = $user['first_name'];
 		$_SESSION['last_name'] = $user['last_name'];
+		$_SESSION['rechten'] = $user['rechten'];
 	}
 	
 	$app->redirect($app->urlFor('home'));

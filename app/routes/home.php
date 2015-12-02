@@ -17,7 +17,8 @@ $app->get('/', function() use ($app) {
 			//'posts' => $posts
 			'opdrachten' => $opdrachten,
 			'first_name' => $_SESSION['first_name'],
-			'last_name' => $_SESSION['last_name']
+			'last_name' => $_SESSION['last_name'],
+			'rechten' => $_SESSION['rechten']
 		]);
 	}
 	else {
