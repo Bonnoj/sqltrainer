@@ -12,7 +12,8 @@
 
 			<form action="" method="post">
 				<textarea name="query" style="width: 100%;" class="form-control" rows="3" placeholder="Voer je query in" required></textarea>
-				<br /><input class="btn btn-primary btn-lg" type="submit">
+				<br /><input class="btn btn-primary btn-lg" type="submit" name="uitvoeren" value="Uitvoeren">
+				<input class="btn btn-primary btn-lg" type="submit" name="inleveren" value="Inleveren">
 			</form>
 		</div>
         <!--<p><a onclick="submit()" class="btn btn-primary btn-lg" id="submitOpdracht" href="#" role="button">Submit &raquo;</a></p>
@@ -24,9 +25,10 @@
 		  Query is fout
 		</div>
 		
-		{% if test is empty %}
+		{% if test == true %}
+			true
 		{% else %}
-			<p>Query: {{ test }}</p>
+			false
 		{% endif %}
     </div>
 </div>

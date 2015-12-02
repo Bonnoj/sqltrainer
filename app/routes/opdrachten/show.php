@@ -28,13 +28,23 @@ $app->post('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
 	}
 	
 	$query = $app->request->post()['query'];
+
+	$answer = false;
 	
-	//$query = $app->db->select('select * from users');
+	if (isset($_POST['uitvoeren'])) {
+		$answer = swek;
+	} else {
+		$answer = krek;
+	}
+
+	//if ($query == $opdracht['antwoord']){
+	//	$answer = true;
+	//}
 	
 	
 	$app->render('opdrachten/show.php', [
 		'opdracht' => $opdracht,
-		'test' => $query
+		'test' => $answer
 	]);
 
 })->name('opdrachten.showpost');
