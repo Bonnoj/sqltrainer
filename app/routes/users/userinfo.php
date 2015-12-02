@@ -4,7 +4,7 @@ use Models\Models\User;
 
 $app->get('/users/:username', function($username) use ($app) {
 
-	$user = User::where('username', $username)->first();
+	$user = User::where('id', $username)->first();
 
 	if ($user == false)
 	{
@@ -12,5 +12,9 @@ $app->get('/users/:username', function($username) use ($app) {
 	}
 
 	//$user = $app->db->table('users')->where('username', $username)->first();
-	var_dump($user->getFullNameOrUsername());
-});
+	$app->render('users/userinfo.php', [ 
+		'user' => $user
+	]);
+	
+	
+})->name('userinfo');

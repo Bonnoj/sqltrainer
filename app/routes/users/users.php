@@ -8,7 +8,8 @@ $app->get('/users', function() use ($app) {
 
 	if ($user == false)
 	{
-		$app->notFound();
+		echo("hoi");
+		//$app->notFound();
 	}
 
 	$app->render('users/users.php', [ 
