@@ -24,12 +24,26 @@
 		  <b>Resultaat:</b><br />
 		  Query is fout
 		</div>
-		
+                
+                <table class="table">
+                {% for result1 in result %}
+                    <tr>
+                    {% for result2 in result1 %}
+                    <td>
+                {{ result2 }} 
+                    </td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+                </table>
+
+		</br>
 		{% if test == true %}
 			true
 		{% else %}
 			false
 		{% endif %}
+                
     </div>
 </div>
 	

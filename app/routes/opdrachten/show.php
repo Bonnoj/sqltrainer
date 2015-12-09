@@ -55,23 +55,41 @@ $app->post('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
 	}
 	
 	$query = $app->request->post()['query'];
-
-	$answer = false;
 	
 	if (isset($_POST['uitvoeren'])) {
-		$answer = swek;
-	} else {
-		$answer = krek;
-	}
+            
+            $servername = "localhost";
+            $username = "select";
+            $password = "select";
+            $dbname = "sqltrainer";
 
-	//if ($query == $opdracht['antwoord']){
-	//	$answer = true;
-	//}
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $result = $conn->query("$query");
+            $rows = array();
+            while($r = mysqli_fetch_assoc($result)) {
+                $rows[] = $r;
+            }
+            $conn->close();
+
+	} else {
+            
+	}
+        
+        $answer = false;
+	if ($query == $opdracht['antwoord']){
+		$answer = true;
+	}
 	
-	
-	$app->render('opdrachten/show.php', [
-		'opdracht' => $opdracht,
-		'test' => $answer
-	]);
+        $app->render('opdrachten/show.php', [
+            'opdracht' => $opdracht,
+            'result' => $rows,
+            'test' => $answer
+            ]);
 
 })->name('opdrachten.showpost');
