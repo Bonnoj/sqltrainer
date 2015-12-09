@@ -48,7 +48,7 @@ $app->post('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
 	//$myvar = $app->db->addSelect(new Illuminate\Database\Query\Expression("select * from users"));
 	
 	$opdracht = $app->db->table('opdrachten')->where('opdrachten.id', '=', $opdrachtId)->first();
-
+        
 	if (!$opdracht)
 	{
 		$app->notFound();
@@ -56,6 +56,7 @@ $app->post('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
 	
 	$query = $app->request->post()['query'];
 	
+        $answer = false;
 	if (isset($_POST['uitvoeren'])) {
             
             $servername = "localhost";
@@ -76,20 +77,39 @@ $app->post('/opdrachten/:opdrachtId', function($opdrachtId) use ($app){
                 $rows[] = $r;
             }
             $conn->close();
-
+            $json = json_encode($rows);
 	} else {
+            $servername = "localhost";
+            $username = "select";
+            $password = "select";
+            $dbname = "sqltrainer";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $result = $conn->query("$query");
+            $rows = array();
+            while($r = mysqli_fetch_assoc($result)) {
+                $rows[] = $r;
+            }
+            $conn->close();
+            $json = json_encode($rows);
             
-	}
-        
-        $answer = false;
-	if ($query == $opdracht['antwoord']){
-		$answer = true;
+             
+            if($opdracht['resultset']== $json){
+                $answer = true;
+            }
 	}
 	
         $app->render('opdrachten/show.php', [
             'opdracht' => $opdracht,
             'result' => $rows,
-            'test' => $answer
+            'test' => $answer,
+            'json' => $json
             ]);
 
 })->name('opdrachten.showpost');
