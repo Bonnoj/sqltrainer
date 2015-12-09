@@ -18,7 +18,7 @@
 		</div>
         <!--<p><a onclick="submit()" class="btn btn-primary btn-lg" id="submitOpdracht" href="#" role="button">Submit &raquo;</a></p>
 		-->
-		<div class="alert alert-danger" id="errorBox" role="alert" style="display: none;>
+		<div class="alert alert-danger" id="errorBox" role="alert" style="display: none;">
 		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		  <span class="sr-only">Error:</span>
 		  <b>Resultaat:</b><br />

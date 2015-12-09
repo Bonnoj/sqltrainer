@@ -34,6 +34,7 @@
 				{% endif %}
 				<br />
 				<p><a class="btn btn-default" href="#" role="button">Alle opdrachten &raquo;</a></p>
+                                <p><a class="btn btn-default" href="opdrachten/new" role="button">Nieuwe opdracht &raquo;</a></p>
 			</div>
 			<div class="col-md-4">
 				<h2>Toetsen</h2>
